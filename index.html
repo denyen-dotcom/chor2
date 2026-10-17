@@ -1,0 +1,362 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choir Members Gift 🎁</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", sans-serif;
+    overflow-x: hidden;
+    color: #fff;
+    background: linear-gradient(135deg, #170d35, #51265d, #a34570);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 15px;
+}
+
+.card {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 520px;
+    padding: 35px 23px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,.35);
+    border-radius: 28px;
+    background: rgba(255,255,255,.12);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 15px 50px rgba(0,0,0,.3);
+    animation: appear 1s ease;
+}
+
+h1 {
+    color: #ffe5a8;
+    font-size: clamp(28px, 7vw, 39px);
+    margin: 12px 0;
+}
+
+.subtitle {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.gift {
+    font-size: 75px;
+    cursor: pointer;
+    display: inline-block;
+    animation: bounce 1.8s infinite;
+    filter: drop-shadow(0 0 15px #ffd8ec);
+}
+
+button {
+    border: none;
+    border-radius: 30px;
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform .25s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.open-btn {
+    background: #ffe5a8;
+    color: #492047;
+    margin: 15px 0;
+}
+
+.message {
+    display: none;
+    animation: appear 1s ease;
+}
+
+.message.show {
+    display: block;
+}
+
+.flower-title {
+    font-size: 36px;
+    margin: 12px 0;
+    animation: bounce 2s infinite;
+}
+
+.notice {
+    margin: 18px 0;
+    padding: 22px 14px;
+    border-radius: 20px;
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.3);
+    line-height: 1.9;
+}
+
+.time {
+    color: #ffe5a8;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.mass {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffe5a8;
+}
+
+.countdown {
+    margin: 15px 0;
+    font-size: 15px;
+    color: #ffe8f4;
+}
+
+.whatsapp {
+    background: #25d366;
+    color: #fff;
+    margin-top: 12px;
+    width: 100%;
+}
+
+.footer {
+    font-size: 13px;
+    margin-top: 22px;
+    opacity: .8;
+}
+
+.flower {
+    position: fixed;
+    top: -50px;
+    z-index: 5;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+.pop {
+    position: fixed;
+    z-index: 6;
+    pointer-events: none;
+    animation: pop 1.5s ease-out forwards;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(25px) scale(.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-10px) rotate(3deg); }
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(115vh) rotate(720deg);
+        opacity: .2;
+    }
+}
+
+@keyframes pop {
+    0% { transform: translate(0,0) scale(.2) rotate(0); opacity: 0; }
+    25% { opacity: 1; }
+    100% { transform: translate(var(--x), var(--y)) scale(1.4) rotate(180deg); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <div class="gift" id="gift" aria-label="Open choir gift">🎁</div>
+
+    <p>💐 A SPECIAL GIFT FOR OUR 💐</p>
+    <h1>Choir Members</h1>
+
+    <p class="subtitle">
+        A little reminder, wrapped with love, unity
+        and the joy of serving God through music.
+    </p>
+
+    <button class="open-btn" id="openBtn" onclick="openGift()">
+        Open Your Gift ✨
+    </button>
+
+    <div class="message" id="message">
+        <div class="flower-title">🌸 🌹 🌺</div>
+
+        <h2>Dear Choir Family ❤️</h2>
+
+        <div class="notice">
+            <p>Kindly remember to be in church by</p>
+
+            <div class="time">8:20 AM</div>
+
+            <p><strong>Tomorrow, Sunday, 18 October 2026</strong></p>
+
+            <p>
+                Let us prepare together in prayer, unity
+                and harmony for our Holy Mass.
+            </p>
+
+            <br>
+
+            <div class="mass">⛪ 9:00 AM Mass</div>
+
+            <p>Let us be punctual and ready to serve! 🎶</p>
+        </div>
+
+        <p>
+            Your presence matters. Together, let our voices
+            glorify God. 🙏
+        </p>
+
+        <div class="countdown" id="countdown">
+            Preparing for tomorrow's Mass...
+        </div>
+
+        <button class="whatsapp" onclick="shareWhatsApp()">
+            💚 Share Reminder on WhatsApp
+        </button>
+    </div>
+
+    <div class="footer">
+        Made with ❤️ for our beloved choir family
+    </div>
+</div>
+
+<script>
+const gift = document.getElementById("gift");
+const message = document.getElementById("message");
+const openBtn = document.getElementById("openBtn");
+
+// Flowers fall automatically when the link opens.
+const flowers = ["🌸", "🌺", "🌹", "🌷", "💮", "🌼", "✨", "💖"];
+
+function makeFlower() {
+    const flower = document.createElement("span");
+    flower.className = "flower";
+    flower.textContent =
+        flowers[Math.floor(Math.random() * flowers.length)];
+
+    flower.style.left = Math.random() * 100 + "vw";
+    flower.style.fontSize = (18 + Math.random() * 22) + "px";
+    flower.style.animationDuration = (4 + Math.random() * 5) + "s";
+
+    document.body.appendChild(flower);
+
+    setTimeout(() => flower.remove(), 9500);
+}
+
+let flowerTimer;
+
+function startFlowers() {
+    if (flowerTimer) return;
+    for (let i = 0; i < 18; i++) {
+        setTimeout(makeFlower, i * 120);
+    }
+    flowerTimer = setInterval(makeFlower, 650);
+}
+
+function popFlowers() {
+    const symbols = ["🌸", "🌹", "💖", "✨", "🌺"];
+
+    for (let i = 0; i < 24; i++) {
+        const item = document.createElement("span");
+        item.className = "pop";
+        item.textContent = symbols[i % symbols.length];
+
+        item.style.left = "50%";
+        item.style.top = "35%";
+        item.style.fontSize = (20 + Math.random() * 18) + "px";
+        item.style.setProperty("--x", (Math.random() * 400 - 200) + "px");
+        item.style.setProperty("--y", (Math.random() * 400 - 200) + "px");
+
+        document.body.appendChild(item);
+        setTimeout(() => item.remove(), 1600);
+    }
+}
+
+function openGift() {
+    message.classList.add("show");
+    gift.textContent = "💝";
+    openBtn.style.display = "none";
+
+    popFlowers();
+    startFlowers();
+
+    message.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+    });
+}
+
+gift.addEventListener("click", openGift);
+
+// Begin the flower animation as soon as the page loads.
+startFlowers();
+
+function shareWhatsApp() {
+    const text =
+`💐 DEAR CHOIR FAMILY 💐
+
+Kindly remember that every choir member should be in church by 8:20 AM tomorrow, Sunday, 18 October 2026, for better preparation for the 9:00 AM Holy Mass.
+
+Let us be punctual, united and ready to serve God through our singing. 🎶🙏
+
+Your presence matters! ❤️`;
+
+    const url = "https://wa.me/?text=" + encodeURIComponent(text);
+    window.open(url, "_blank", "noopener,noreferrer");
+}
+
+// Countdown to 8:20 AM local time tomorrow.
+function updateCountdown() {
+    const now = new Date();
+    const target = new Date(2026, 9, 18, 8, 20, 0);
+    const display = document.getElementById("countdown");
+
+    if (now >= target) {
+        display.textContent =
+            "It is time to prepare for Mass! 🙏";
+
+        if (now.toDateString() !== target.toDateString()) {
+            display.textContent =
+                "Let us stay punctual for our next choir gathering! 🎶";
+        }
+        return;
+    }
+
+    const diff = target - now;
+    const hours = Math.floor(diff / 3600000);
+    const minutes = Math.ifloor((diff % 3600000) / 60000);
+    const seconds = Math.floor((diff % 60000) / 1000);
+
+    display.textContent =
+        `Time until 8:20 AM: ${hours}h ${minutes}m ${seconds}s`;
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
